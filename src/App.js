@@ -1,5 +1,5 @@
 import { Suspense, useRef, useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import {
   useGLTF,
   OrbitControls,
@@ -8,11 +8,18 @@ import {
 } from "@react-three/drei";
 
 function BlackBox({ ...props }) {
-  const group = useRef();
+  const groupRef = useRef();
   const { nodes, materials } = useGLTF("/black-box.glb");
 
+  useFrame((state) => {
+    const t = state.clock.getElapsedTime();
+    // groupRef.current.rotation.x = Math.cos(t / 2) / 5;
+    groupRef.current.rotation.y += 0.005;
+    groupRef.current.position.y = Math.sin(t / 0.5) / 3;
+  });
+
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group ref={groupRef} {...props} dispose={null}>
       <mesh
         geometry={nodes.Cube.geometry}
         material={materials["Material.001"]}
