@@ -43,8 +43,13 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen gap-5 bg-gradient-to-tl from-indigo-600 bg-emerald-600">
-      <div className="p-5 bg-black/90 backdrop-blur w-96 h-96 rounded-xl">
+    <div className="flex flex-col items-center justify-center min-h-screen gap-5 p-5 bg-gradient-to-tl from-indigo-600 bg-emerald-600">
+      <span className="text-base text-white text-normal">
+        <strong>Swipe</strong> or <strong>click and drag</strong> object to
+        rotate
+      </span>
+
+      <div className="w-full max-w-sm h-96 rounded-xl">
         <Canvas className="hover:cursor-grab active:cursor-grabbing">
           <Suspense fallback={null}>
             <ambientLight />
@@ -78,7 +83,7 @@ function App() {
         </Canvas>
       </div>
 
-      <div className="grid h-16 grid-cols-5 gap-3 p-3 overflow-hidden bg-black/90 backdrop-blur w-96 rounded-xl">
+      <div className="grid w-full h-16 max-w-sm grid-cols-5 gap-3 p-3 overflow-hidden bg-black/90 backdrop-blur rounded-xl">
         <button
           className={`rounded-md from-red-800 via-red-600 to-red-800 bg-gradient-to-r hover:from-red-700 hover:via-red-500 hover:to-red-700 hover:cursor-pointer ${
             color === "#991b1b" ? "ring ring-white" : null
