@@ -13,7 +13,6 @@ function BlackBox({ ...props }) {
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
-    // groupRef.current.rotation.x = Math.cos(t / 2) / 5;
     groupRef.current.rotation.y += 0.005;
     groupRef.current.position.y = Math.sin(t / 0.5) / 3;
   });
@@ -39,10 +38,16 @@ function App() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen gap-5 p-5 bg-gradient-to-tl from-indigo-600 bg-emerald-600">
-      <span className="text-base text-white text-normal">
-        <strong>Swipe</strong> or <strong>click and drag</strong> object to
-        rotate
-      </span>
+      <div className="flex flex-col w-full max-w-sm text-base text-center text-white text-normal">
+        <span>
+          <strong>Swipe</strong> or <strong>click and drag</strong> object to
+          rotate
+        </span>
+
+        <span>
+          Scroll to <strong>zoom</strong> in or out.
+        </span>
+      </div>
 
       <div className="w-full max-w-sm h-96 rounded-xl">
         <Canvas className="hover:cursor-grab active:cursor-grabbing">
@@ -71,7 +76,8 @@ function App() {
 
             <OrbitControls
               enablePan={true}
-              enableZoom={false}
+              enableZoom={true}
+              enableDamping={true}
               enableRotate={true}
             />
           </Suspense>
