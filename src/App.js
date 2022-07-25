@@ -1,9 +1,7 @@
 import { Suspense, useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Mesh } from "three";
+import { Canvas } from "@react-three/fiber";
 import {
   useGLTF,
-  PerspectiveCamera,
   OrbitControls,
   Environment,
   ContactShadows,
@@ -15,16 +13,6 @@ function BlackBox({ ...props }) {
 
   return (
     <group ref={group} {...props} dispose={null}>
-      {/* <group position={[20.53, 54.97, -97.53]} rotation={[1.99, 0.08, -2.96]}>
-        <PerspectiveCamera
-          makeDefault={false}
-          far={1000}
-          near={0.1}
-          fov={22.9}
-          rotation={[-Math.PI / 2, 0, 0]}
-        />
-      </group> */}
-
       <mesh
         geometry={nodes.Cube.geometry}
         material={materials["Material.001"]}
@@ -120,25 +108,6 @@ function App() {
         ></button>
       </div>
     </div>
-  );
-}
-
-function Cube(props) {
-  const meshRef = useRef(null);
-
-  useFrame(() => {
-    if (!meshRef.current) {
-      return;
-    }
-
-    meshRef.current.rotation.y += 0.005;
-  });
-
-  return (
-    <mesh ref={meshRef}>
-      <boxGeometry attach="geometry" args={props.size} />
-      <meshStandardMaterial />
-    </mesh>
   );
 }
 
